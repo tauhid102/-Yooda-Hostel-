@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
-  const adminCredential = ["admin@admin.com", "abcd1234"];
+  const adminCredential = ["admin@gmail.com", "123456"];
   const [adminEmail, setAdminEmail] = useState(null);
   const [adminPass, setAdminPass] = useState(null);
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const useAuth = () => {
   const adminLogin = () => {
     if (adminEmail === adminCredential[0] && adminPass === adminCredential[1]) {
       localStorage.setItem("adminLoggedIn", true);
-      navigate("/addStudent");
+      navigate("/allStudents");
     } else {
       window.alert("Please use correct email or pass");
     }

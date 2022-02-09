@@ -50,10 +50,10 @@ const EditFood = () => {
           <div className="col">
             <h3 className="mt-5">
               Please Provide<span className="text-danger"> Information </span>
-              For Update  <span className="text-danger">Foods</span>
+              For Update <span className="text-danger">Foods</span>
             </h3>
             <form
-              className="row g-3 w-100 inputFrom mt-2"
+              className="row g-3 w-100 inputFrom mt-2 loginFrom"
               id="create-course-form"
               onSubmit={handleAddProduct}
             >
@@ -97,21 +97,21 @@ const EditFood = () => {
                   min="1"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-12 mx-auto text-center">
                 <button type="submit" className="btn btn-dark">
                   Update Food
                 </button>
               </div>
-              {confirm && (
-                <div class="alert alert-success" role="alert">
-                  Update Food Successfully
-                </div>
-              )}
             </form>
+            {confirm && (
+              <div class="alert alert-success" role="alert">
+                Update Food Successfully
+              </div>
+            )}
           </div>
           <div className="col mt-5">
             <h4 className="text-center">Previous Information</h4>
-            <div className="mx-auto w-50 border border-4 p-3">
+            <div className="mx-auto w-50 border border-4 p-3 loginFrom">
               <h6>Food Id: {food.id}</h6>
               <h6>Food name: {food.name}</h6>
               <h6>Food Price: {food.price}</h6>

@@ -13,7 +13,7 @@ const AddFood = () => {
     newAddData[field] = value;
     setAddFoods(newAddData);
   };
-  const handleAddProduct = (e) => {
+  const handleAddFood = (e) => {
     e.preventDefault();
     const product = {
       ...addFoods,
@@ -44,9 +44,9 @@ const AddFood = () => {
               For Add <span className="text-danger">Foods</span>
             </h3>
             <form
-              className="row g-3 w-100 inputFrom mt-2"
+              className="row g-3 w-100 inputFrom mt-3 loginFrom"
               id="create-course-form"
-              onSubmit={handleAddProduct}
+              onSubmit={handleAddFood}
             >
               <div className="col-12">
                 <label for="inputAddress" className="form-label">
@@ -60,6 +60,7 @@ const AddFood = () => {
                   id="inputAddress"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 1"
                 />
               </div>
               <div className="col-12">
@@ -72,6 +73,7 @@ const AddFood = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Burger"
                 />
               </div>
               <div className="col-12">
@@ -86,19 +88,20 @@ const AddFood = () => {
                   id="inputEmail4"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 70"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-12 mx-auto text-center">
                 <button type="submit" className="btn btn-dark">
                   Add Food
                 </button>
               </div>
-              {confirm && (
-                <div class="alert alert-success" role="alert">
-                  Add Food Successfully
-                </div>
-              )}
             </form>
+            {confirm && (
+              <div class="alert alert-success" role="alert">
+                Add Food Successfully
+              </div>
+            )}
           </div>
           <div className="col picutre">
             {/* <img src={picture} alt="" /> */}

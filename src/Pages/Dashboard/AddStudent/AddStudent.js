@@ -4,7 +4,7 @@ import Dashboard from "../Dashboard/Dashboard";
 const AddStudent = () => {
   const [addStudent, setAddStudent] = useState({});
   const [confirm, setConfirm] = useState(false);
-  const [status, setStatus] = useState("");
+  const status = 'active';
   // const { user, registerUser, isLoading, authError } = useAuth();
 
   const handleOnBlur = (e) => {
@@ -18,6 +18,7 @@ const AddStudent = () => {
     e.preventDefault();
     const product = {
       ...addStudent,
+      status
     };
     fetch("http://localhost:5000/students", {
       method: "POST",
@@ -38,18 +39,18 @@ const AddStudent = () => {
     <>
       <Dashboard></Dashboard>
       <div className="container">
-        <div className="row row-cols-1 row-cols-sm-2">
-          <div className="col-12">
+        <div className="row">
+          <div className="col">
             <h3 className="mt-5">
               Please Provide<span className="text-danger"> Information </span>
               For Add <span className="text-danger">Student</span>
             </h3>
             <form
-              className="row g-3 w-100 inputFrom mt-2 d-flex"
+              className="row g-3 w-100 inputFrom mt-2 d-flex loginFrom mt-3"
               id="create-course-form"
               onSubmit={handleAddStudent}
             >
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputAddress" className="form-label">
                   Student Id
                 </label>
@@ -61,9 +62,10 @@ const AddStudent = () => {
                   id="inputAddress"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 011171264"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Name
                 </label>
@@ -73,9 +75,10 @@ const AddStudent = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Name"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Roll
                 </label>
@@ -87,9 +90,10 @@ const AddStudent = () => {
                   id="inputEmail4"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 123"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Age
                 </label>
@@ -101,9 +105,10 @@ const AddStudent = () => {
                   id="inputEmail4"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 12"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Class
                 </label>
@@ -113,9 +118,10 @@ const AddStudent = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Ex: Six"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Hall
                 </label>
@@ -125,62 +131,24 @@ const AddStudent = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Ex: Shapla"
                 />
               </div>
-              <div className="col-12">
-                <label for="inputEmail4" className="form-label">
-                  Status
-                </label>
-                <input
-                  type="text"
-                  name="status"
-                  onBlur={handleOnBlur}
-                  className="form-control"
-                  id="inputEmail4"
-                  placeholder="active or inActive"
-                />
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="status"
-                  id="flexRadioDefault1"
-                  value="active"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Active
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="status"
-                  id="flexRadioDefault2"
-                  value="inActive"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  InActive
-                </label>
-              </div>
-              <div className="col-12">
+              <div className="col-6 mx-auto text-center">
                 <button type="submit" className="btn btn-dark">
                   Add Student
                 </button>
               </div>
+            </form>
               {confirm && (
                 <div class="alert alert-success" role="alert">
                   Add Student Successfully
                 </div>
               )}
-            </form>
           </div>
-          <div className="col picutre">
-            {/* <img src={picture} alt="" /> */}
-          </div>
+          {/* <div className="col picutre">
+            <img src={picture} alt="" />
+          </div> */}
         </div>
       </div>
     </>

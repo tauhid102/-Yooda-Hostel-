@@ -39,6 +39,7 @@ const AllStudents = () => {
     }
   };
   const handleActiveStatus =(id)=>{
+    setActive(true);
     const ids = { id };
         const proceed = window.confirm('Are you sure, you want to active?');
         if (proceed) {
@@ -61,6 +62,7 @@ const AllStudents = () => {
 
   }
   const handleInActiveStatus =(id)=>{
+    setInActive(true);
     const ids = { id };
         const proceed = window.confirm('Are you sure, you want to InActive?');
         if (proceed) {
@@ -84,8 +86,8 @@ const AllStudents = () => {
   return (
     <>
       <Dashboard></Dashboard>
-      <div className="container mt-5">
-        <h1 className="text-center">All Students Are Here</h1>
+      <div className="container mt-2">
+        <h3 className="text-center">All Students Are Here</h3>
 
         <div className="table-responsive">
           <table className="table table-hover table-light">
@@ -123,7 +125,7 @@ const AllStudents = () => {
                   <td>{student.class}</td>
                   <td>{student.hall}</td>
                   <td>
-                    {student.status}
+                    
                     <div className="btn-group" role="group">
                       <button
                         id="btnGroupDrop1"
@@ -132,7 +134,7 @@ const AllStudents = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        
+                        {student.status}
                       </button>
                       <ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li>

@@ -7,6 +7,7 @@ const EditStudent = () => {
   const [student, setStudent] = useState({});
   const [updateStudent, setUpdateStudent] = useState({});
   const [confirm, setConfirm] = useState(false);
+  const status = 'active';
 
   useEffect(() => {
     const url = `http://localhost:5000/students/${studentId}`;
@@ -21,10 +22,11 @@ const EditStudent = () => {
     newAddData[field] = value;
     setUpdateStudent(newAddData);
   };
-  const handleAddProduct = (e) => {
+  const handleUpdateStudent = (e) => {
     e.preventDefault();
     const item = {
       ...updateStudent,
+      status
     };
     fetch(`http://localhost:5000/students/${studentId}`, {
       method: "PUT",
@@ -45,18 +47,18 @@ const EditStudent = () => {
     <>
       <Dashboard></Dashboard>
       <div className="container">
-        <div className="row row-cols-1 row-cols-sm-2">
-          <div className="col">
+        <div className="row row-cols-1 row-cols-md-2">
+          <div className="col col-sm-12 col-lg-8">
             <h3 className="mt-5">
               Please Provide<span className="text-danger"> Information </span>
               For Update <span className="text-danger">Student</span>
             </h3>
             <form
-              className="row g-3 w-100 inputFrom mt-2 d-flex"
+              className="row g-3 w-100 inputFrom mt-2 d-flex loginFrom"
               id="create-course-form"
-              onSubmit={handleAddProduct}
+              onSubmit={handleUpdateStudent}
             >
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputAddress" className="form-label">
                   Student Id
                 </label>
@@ -68,9 +70,10 @@ const EditStudent = () => {
                   id="inputAddress"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 011171264"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Name
                 </label>
@@ -80,9 +83,10 @@ const EditStudent = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Name"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Roll
                 </label>
@@ -94,9 +98,10 @@ const EditStudent = () => {
                   id="inputEmail4"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 1234"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Age
                 </label>
@@ -108,9 +113,10 @@ const EditStudent = () => {
                   id="inputEmail4"
                   onkeypress="return event.charCode >= 48"
                   min="1"
+                  placeholder="Ex: 12"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Class
                 </label>
@@ -120,9 +126,10 @@ const EditStudent = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Ex: Six"
                 />
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label for="inputEmail4" className="form-label">
                   Student Hall
                 </label>
@@ -132,61 +139,24 @@ const EditStudent = () => {
                   onBlur={handleOnBlur}
                   className="form-control"
                   id="inputEmail4"
+                  placeholder="Ex: Shapla"
                 />
               </div>
-              <div className="col-12">
-                <label for="inputEmail4" className="form-label">
-                  Status
-                </label>
-                <input
-                  type="text"
-                  name="status"
-                  onBlur={handleOnBlur}
-                  className="form-control"
-                  id="inputEmail4"
-                  placeholder="active or inActive"
-                />
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="status"
-                  id="flexRadioDefault1"
-                  value="active"
-                />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Active
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="status"
-                  id="flexRadioDefault2"
-                  value="inActive"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  InActive
-                </label>
-              </div>
-              <div className="col-12">
+              <div className="col-12 mx-auto text-center">
                 <button type="submit" className="btn btn-dark">
-                  Add Student
+                  Update
                 </button>
               </div>
+            </form>
               {confirm && (
                 <div class="alert alert-success" role="alert">
                   Update Student Successfully
                 </div>
               )}
-            </form>
           </div>
-          <div className="col mt-5">
+          <div className="col col-sm-12 col-lg-4 mt-5">
             <h4 className="text-center">Previous Information</h4>
-            <div className="mx-auto w-50 border border-4 p-3">
+            <div className="mx-auto w-50 border border-4 p-3  loginFrom">
               <h6>Id: {student.id}</h6>
               <h6>Name: {student.name}</h6>
               <h6>Roll: {student.roll}</h6>
