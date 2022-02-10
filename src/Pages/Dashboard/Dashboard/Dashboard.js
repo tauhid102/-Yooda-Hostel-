@@ -22,6 +22,9 @@ const Dashboard = () => {
               <Nav.Link as={Link} to="/allFoods">
                 All Food
               </Nav.Link>
+              <Nav.Link as={Link} to="/served">
+                Served
+              </Nav.Link>
               <Nav.Link as={Link} to="/serving">
                 Serving
               </Nav.Link>

@@ -9,7 +9,7 @@ const EditFood = () => {
   const [confirm, setConfirm] = useState(false);
 
   useEffect(() => {
-    const url = `http://localhost:5000/foods/${foodId}`;
+    const url = `https://tranquil-chamber-66218.herokuapp.com/foods/${foodId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setFood(data));
@@ -27,7 +27,7 @@ const EditFood = () => {
     const item = {
       ...updateFood,
     };
-    fetch(`http://localhost:5000/foods/${foodId}`, {
+    fetch(`https://tranquil-chamber-66218.herokuapp.com/foods/${foodId}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

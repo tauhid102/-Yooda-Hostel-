@@ -4,15 +4,17 @@ import Dashboard from "../Dashboard/Dashboard/Dashboard";
 const Serving = () => {
   const [students, setStudents] = useState({});
   const [filter, setFilter] = useState({});
-  const [brakFast, setBrakFast] = useState({});
-  const [lanch, setLanch] = useState({});
-  const [dinner, setDinner] = useState({});
+  const [breakFast, setBreakFast] = useState("non-served");
+  const [lanch, setLanch] = useState("non-served");
+  const [dinner, setDinner] = useState("non-served");
   const [date, setDate] = useState({});
   const [foodList, setFoodList] = useState({});
-  const [served,setServed]=useState({});
+  const [food, setServed] = useState({});
+  const [search, setSearch] = useState({});
+  const [confirm, setConfirm] = useState(false);
   const status = "Served";
   useEffect(() => {
-    fetch("http://localhost:5000/students")
+    fetch("https://tranquil-chamber-66218.herokuapp.com/students")
       .then((res) => res.json())
       .then((data) => {
         setStudents(data.students);
@@ -25,14 +27,22 @@ const Serving = () => {
     setFilter(match);
   };
   const handleBreakFast = (e) => {
-    setBrakFast(e.target.value);
+    // const id = filter[0]?.id;
+    // let m = food.filter((student) => student?.id == id);
+    // const url = `http://localhost:5000/served/${id}`;
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => setSearch(data));
+    setBreakFast("Served");
+    // console.log(id);
+    console.log(food);
+    // console.log(m);
   };
   const handleLanch = (e) => {
-    
-    setLanch(e.target.value);
+    setLanch("Served");
   };
   const handleDinner = (e) => {
-    setDinner(e.target.value);
+    setDinner("served");
   };
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -40,28 +50,30 @@ const Serving = () => {
   const handleFoodList = (e) => {
     setFoodList(e.target.value);
   };
-   useEffect(()=>{
-    const id=filter[0]?._id;
-    const url = `http://localhost:5000/served/${id}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setServed(data));
-      console.log(served);
-   },[brakFast])
   const servied = (e) => {
     e.preventDefault();
-    const {id,roll}=filter[0];
+    const { id, roll } = filter[0];
     const serve = {
       id,
       roll,
       date,
-      brakFast,
+      breakFast,
       lanch,
       dinner,
       status,
       foodList,
     };
-    fetch("http://localhost:5000/served", {
+    // const match = food.filter(
+    //   (student) => student?.date == date && student?.brakFast == "Served"
+    // );
+    // if (match.breakFast === "Served") {
+    //   alert("Already Served");
+    // } else if (match.lanch === "lanch") {
+    //   alert("Already Served");
+    // }
+    // console.log(match);
+
+    fetch("https://tranquil-chamber-66218.herokuapp.com/served", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -71,7 +83,7 @@ const Serving = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          //   setConfirm(true);
+          setConfirm(true);
           document.getElementById("create-course-form").reset();
         }
       });
@@ -81,7 +93,12 @@ const Serving = () => {
       <Dashboard></Dashboard>
       <div className="container">
         <div>
-          <input type="text" onChange={handleSerch}></input>
+          <input
+            className="loginFrom mt-3 mb-3 w-50 text-center border-0 mx-auto"
+            placeholder="Search By Roll"
+            type="text"
+            onChange={handleSerch}
+          ></input>
         </div>
         <form
           className="row g-3 w-100 inputFrom mt-2 d-flex loginFrom mt-3"
@@ -141,32 +158,12 @@ const Serving = () => {
             />
           </div>
           <div className="col-6">
-            <label for="inputEmail4" className="form-label">
-              Shift
-            </label>
-            <input
-              type="radio"
-              onClick={handleBreakFast}
-              name="shift"
-              id="break fast"
-              value="break-fast"
-            />
+            <label for="inputEmail4" className="form-label"></label>
+            <input type="radio" onClick={handleBreakFast} name="break-fast" />
             Break Fast
-            <input
-              type="radio"
-              onClick={handleLanch}
-              name="shift"
-              id="Lanch"
-              value="lanch"
-            />
+            <input type="radio" onClick={handleLanch} name="lanch" />
             Lanch
-            <input
-              type="radio"
-              onClick={handleDinner}
-              name="shift"
-              id="Dinner"
-              value="dinner"
-            />
+            <input type="radio" onClick={handleDinner} name="dinner" />
             Dinner
           </div>
           <div className="col-6 mx-auto text-center">
@@ -175,6 +172,11 @@ const Serving = () => {
             </button>
           </div>
         </form>
+        {confirm && (
+          <div class="alert alert-success" role="alert">
+            Served Student Successfully
+          </div>
+        )}
       </div>
     </>
   );

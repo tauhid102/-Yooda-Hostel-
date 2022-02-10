@@ -10,7 +10,7 @@ const AllFoods = () => {
   const [page, setPage] = useState(0);
   // const size=10;
   useEffect(() => {
-    fetch(`http://localhost:5000/foods?page=${page}`)
+    fetch(`https://tranquil-chamber-66218.herokuapp.com/foods?page=${page}`)
       .then((res) => res.json())
       .then((data) => {
         setFoods(data.foods);
@@ -23,7 +23,7 @@ const AllFoods = () => {
   const handleDeleteFood = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete?");
     if (proceed) {
-      const url = `http://localhost:5000/foods/${id}`;
+      const url = `https://tranquil-chamber-66218.herokuapp.com/foods/${id}`;
       fetch(url, {
         method: "DELETE",
       })

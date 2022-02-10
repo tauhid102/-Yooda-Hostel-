@@ -18,7 +18,7 @@ const AddFood = () => {
     const product = {
       ...addFoods,
     };
-    fetch("http://localhost:5000/foods", {
+    fetch("https://tranquil-chamber-66218.herokuapp.com/foods", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -10,7 +10,7 @@ const EditStudent = () => {
   const status = 'active';
 
   useEffect(() => {
-    const url = `http://localhost:5000/students/${studentId}`;
+    const url = `https://tranquil-chamber-66218.herokuapp.com/students/${studentId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setStudent(data));
@@ -28,7 +28,7 @@ const EditStudent = () => {
       ...updateStudent,
       status
     };
-    fetch(`http://localhost:5000/students/${studentId}`, {
+    fetch(`https://tranquil-chamber-66218.herokuapp.com/students/${studentId}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

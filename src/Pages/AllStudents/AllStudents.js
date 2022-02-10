@@ -11,7 +11,7 @@ const AllStudents = () => {
   const [inActive, setInActive] = useState(true);
   // const size=10;
   useEffect(() => {
-    fetch(`http://localhost:5000/students?page=${page}`)
+    fetch(`https://tranquil-chamber-66218.herokuapp.com/students?page=${page}`)
       .then((res) => res.json())
       .then((data) => {
         setStudents(data.students);
@@ -20,11 +20,11 @@ const AllStudents = () => {
         setPageCount(pageNumber);
       });
   }, [page,active,inActive]);
-
+  console.log(students);
   const handleDeleteStudent = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete?");
     if (proceed) {
-      const url = `http://localhost:5000/students/${id}`;
+      const url = `https://tranquil-chamber-66218.herokuapp.com/students/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -43,7 +43,7 @@ const AllStudents = () => {
     const ids = { id };
         const proceed = window.confirm('Are you sure, you want to active?');
         if (proceed) {
-            const url = `http://localhost:5000/students/active/${id}`;
+            const url = `https://tranquil-chamber-66218.herokuapp.com/students/active/${id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -66,7 +66,7 @@ const AllStudents = () => {
     const ids = { id };
         const proceed = window.confirm('Are you sure, you want to InActive?');
         if (proceed) {
-            const url = `http://localhost:5000/students/inActive/${id}`;
+            const url = `https://tranquil-chamber-66218.herokuapp.com/students/inActive/${id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -138,7 +138,7 @@ const AllStudents = () => {
                       </button>
                       <ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li>
-                          <button onClick={() => handleActiveStatus(student._id)} className="btn btn-group btn-info w-100">Active</button>
+                          <button onClick={() => handleActiveStatus(student._id)} className="btn btn-group btn-info w-100 border">Active</button>
                         </li>
                         <li>
                           <button onClick={() => handleInActiveStatus(student._id)} className="btn btn-group btn-warning w-100">InActive</button>

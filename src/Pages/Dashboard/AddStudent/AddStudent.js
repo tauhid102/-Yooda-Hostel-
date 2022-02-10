@@ -20,7 +20,7 @@ const AddStudent = () => {
       ...addStudent,
       status
     };
-    fetch("http://localhost:5000/students", {
+    fetch("https://tranquil-chamber-66218.herokuapp.com/students", {
       method: "POST",
       headers: {
         "content-type": "application/json",

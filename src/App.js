@@ -10,6 +10,7 @@ import EditFood from './Pages/EditFood/EditFood';
 import EditStudent from './Pages/EditStudent/EditStudent';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Serving from './Pages/Serving/Serving';
+import Served from './Pages/Served/Served';
 function App() {
   return (
     <div className="">
@@ -25,6 +26,7 @@ function App() {
         <Route path="/foods/:foodId" element={<PrivateRoute><EditFood/></PrivateRoute>} />
         <Route path="/students/:studentId" element={<PrivateRoute><EditStudent/></PrivateRoute>} />
         <Route path="/serving" element={<PrivateRoute><Serving></Serving></PrivateRoute>} />
+        <Route path="/served" element={<PrivateRoute><Served></Served></PrivateRoute>} />
 
 
 
